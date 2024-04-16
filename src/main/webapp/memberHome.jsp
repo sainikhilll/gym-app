@@ -24,7 +24,7 @@
             <img src="memberhome.jpg" class="img-fluid" alt="Image">
        </div>
        <div class="col-md-6 centered-text text-decoration-none">
-            <a href="memberProfile.jsp">Schedule Class now!</a>
+            <a href="classes.jsp">Schedule Class now!</a>
        </div>
 
 </div>

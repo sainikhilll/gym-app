@@ -4,15 +4,16 @@ import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
-public class Cls {
+public class ClassEnrollment {
+    private int enrollment_Id;
+    private int member_Id;
     private int class_Id;
+    private String dateofclass;
     private String class_name;
     private String instructor;
-    private String duration;
-    private String about;
-    private String image;
-    private int price;
+    private String status;
+
 }

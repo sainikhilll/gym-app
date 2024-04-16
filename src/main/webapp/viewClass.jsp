@@ -8,7 +8,7 @@
     <title>Classes</title>
     <style>
             .card-img-top {
-                max-height: 200px; /* Adjust the height as needed */
+                max-height: 350px; /* Adjust the height as needed */
                 object-fit: cover; /* Maintain aspect ratio */
             }
               .card {
@@ -18,19 +18,30 @@
                                 height: 90%; /* Ensure card body fills the entire height of the card */
                             }
         </style>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+         <link rel="stylesheet" href="/resources/demos/style.css">
+         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+         <script>
+         $( function() {
+           $('#datepicker').datepicker({
+                  dateFormat: 'yy-mm-dd', // Set the date format
+                  minDate: new Date() // Set minimum date to current date
+              });
+         } );
+         </script>
 
 </head>
 <body>
     <div class="container">
         <div class="row">
             <%
-
+            int classId = Integer.parseInt(request.getParameter("classId"));
             ClassService classService = new ClassService();
-            List<Cls> classes = classService.getClasses();
-            for (Cls cls : classes) {
+            Cls cls = classService.getClassByClassId(classId);
                 %>
-                <div class="col-md-6" >
-                    <div class="card mb-3 mt-5" style="width: 35rem;">
+                <div class="col-md-12 ms-5" >
+                    <div class="card mb-3 mt-5 ms-5" style="width: 60rem;">
                         <img src="<%= cls.getImage() %>" class="card-img-top" alt="Class Image">
                         <div class="card-body">
                             <h5 class="card-title"><%= cls.getClass_name() %></h5>
@@ -40,12 +51,18 @@
                             <p class="card-text col-md-4 fw-bold"><strong><svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 8.5V8.35417C18 6.50171 16.4983 5 14.6458 5H9.5C7.567 5 6 6.567 6 8.5C6 10.433 7.567 12 9.5 12H14.5C16.433 12 18 13.567 18 15.5C18 17.433 16.433 19 14.5 19H9.42708C7.53436 19 6 17.4656 6 15.5729V15.5M12 3V21" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></strong> <%= cls.getPrice() %></p>
                            </div>
                             <p class="card-text "><strong></strong> <%= cls.getAbout() %></p>
-                            <a href="viewClass.jsp?classId=<%= cls.getClass_Id() %>" class="btn btn-primary">Schedule</a>
-                            </form>
+
+                            <form action="classEnroll?classId=<%= cls.getClass_Id() %>" method="post">
+                               <div class="form-group">
+                                   <label for="datepicker">Select Date:</label>
+                                   <input type="text" class="form-control" id="datepicker" name="selectedDate">
+                               </div>
+                               <input type="hidden" name="classId" value="<%= cls.getClass_Id() %>">
+                               <button type="submit" class="btn btn-primary">Schedule</button>
+                        </form>
                         </div>
                     </div>
                 </div>
-            <% } %>
         </div>
     </div>
 

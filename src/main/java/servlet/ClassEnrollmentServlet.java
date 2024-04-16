@@ -42,7 +42,7 @@ public class ClassEnrollmentServlet extends HttpServlet {
 
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO `gymapp`.`classenrollment` (`class_Id`, `member_Id`, `dateofclass`, `status`) VALUES ("+class_Id+","+ member_Id+",'"+ dateOfClass +"',"+" 'Confirmed')");
-            response.sendRedirect("message.jsp?msg= Enrolled in class!");
+            response.sendRedirect("successMessage.jsp?msg= Enrolled in class!");
         }
 
     catch(SQLException e){

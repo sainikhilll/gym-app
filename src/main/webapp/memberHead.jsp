@@ -9,7 +9,7 @@
         <a class="nav-link" href="memberProfile.jsp">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="activity">Activity</a>
+        <a class="nav-link" href="schedule.jsp">Schedule</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="classes.jsp">Classes</a>

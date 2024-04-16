@@ -59,6 +59,7 @@ public class MemberServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
         try {
             Statement statment = connection.createStatement();
             ResultSet rs = statment.executeQuery("select * from Member where email='"+email+"' and password='"+password+"'");

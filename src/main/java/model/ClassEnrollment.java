@@ -15,5 +15,6 @@ public class ClassEnrollment {
     private String class_name;
     private String instructor;
     private String status;
+    private String image;
 
 }

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,7 +20,9 @@ public class UpdateMemberServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Member member = new Member();
-        member.setMember_Id(request.getParameter("member_Id"));
+        HttpSession session = request.getSession();
+        String memberId = (String) session.getAttribute("member_Id");
+        member.setMember_Id(memberId);
         member.setFirst_name(request.getParameter("first_name"));
         member.setLast_name(request.getParameter("last_name"));
         member.setEmail(request.getParameter("email"));
@@ -33,7 +36,8 @@ public class UpdateMemberServlet extends HttpServlet {
         System.out.println(member.toString());
         try {
             Statement statement = connection.createStatement();
-            statement.executeUpdate("update member set first_name='"+member.getFirst_name()+"', last_name='"+member.getLast_name()+"', email='"+member.getEmail()+"', phone='"+member.getPhone()+"', height='"+member.getHeight()+"', weight='"+member.getHeight()+"', age='"+member.getAge()+"' where member_Id='"+member.getMember_Id()+"'");
+            System.out.println("update member set first_name='"+member.getFirst_name()+"', last_name='"+member.getLast_name()+"', email='"+member.getEmail()+"', phone='"+member.getPhone()+"', height='"+member.getHeight()+"', weight='"+member.getWeight()+"', age='"+member.getAge()+"' where member_Id='"+member.getMember_Id()+"'");
+            statement.executeUpdate("update member set first_name='"+member.getFirst_name()+"', last_name='"+member.getLast_name()+"', email='"+member.getEmail()+"', phone='"+member.getPhone()+"', height='"+member.getHeight()+"', weight='"+member.getWeight()+"', age='"+member.getAge()+"' where member_Id='"+member.getMember_Id()+"'");
             response.sendRedirect("message.jsp?msg= Member Updated Successfully!");
         } catch (SQLException e) {
             response.sendRedirect("message.jsp?msg= Failed to update Member");

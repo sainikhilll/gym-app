@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-4"></div>
 	<div class="col-md-4 mt-5">
-		<div class="card bg-secondary p-3">
+		<div class="card bg-dark p-3">
 			<div class="text-center h4 text-white">Update Profile</div>
 			<form action="updateMember" method="get">
 			<input type="hidden" name="member_Id" value="<%=request.getParameter("member_Id")%>">
